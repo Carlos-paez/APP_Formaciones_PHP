@@ -1,0 +1,16 @@
+Copyright (c) 2026, Carlos Páez.
+Todos los derechos reservados.
+Se concede permiso para descargar y consultar este código fuente con fines personales, educativos o de auditoría.
+No se permite:
+
+
+Redistribuir este software o su código fuente, de forma total o parcial, en forma original o modificada.
+
+
+Modificar el código fuente ni crear obras derivadas, salvo autorización previa y por escrito del titular de los derechos.
+
+
+Utilizar este software con fines comerciales sin una licencia comercial específica.
+
+
+Este software se proporciona “tal cual”, sin garantía de ningún tipo, expresa o implícita, incluyendo, sin limitación, las garantías de comerciabilidad o idoneidad para un propósito particular. El titular de los derechos no será responsable de ningún daño derivado del uso de este software.

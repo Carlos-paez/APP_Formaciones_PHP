@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Evento - Gestor de Eventos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📝 Registrar Nuevo Evento</h1>
+        <p class="subtitle">Complete los datos para programar una nueva formación</p>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="index.html" class="btn-nav">🏠 Inicio</a>
+        <a href="events.html" class="btn-nav">📋 Ver Eventos</a>
+    </div>
+
+    <div class="form-container">
+        <div id="messageContainer"></div>
+
+        <form id="eventForm">
+            <div class="form-group">
+                <label for="ubicacion">📍 Ubicación:</label>
+                <input type="text" id="ubicacion" name="ubicacion" required
+                       placeholder="Ej: Sala A, Laboratorio 1, Auditorio">
+                <small class="help-text">Ingrese el lugar donde se realizará la formación</small>
+            </div>
+
+            <div class="form-group">
+                <label for="formador">👨‍🏫 Formador:</label>
+                <input type="text" id="formador" name="formador" required
+                       placeholder="Nombre completo del formador">
+                <small class="help-text">Nombre del instructor o responsable</small>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hora_inicio">🕐 Hora de Inicio:</label>
+                    <input type="time" id="hora_inicio" name="hora_inicio" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hora_fin">🕑 Hora de Finalización:</label>
+                    <input type="time" id="hora_fin" name="hora_fin" required>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">💾 Guardar Evento</button>
+                <button type="button" class="btn-secondary" onclick="resetForm()">↺ Limpiar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="stats-section">
+        <h3>📊 Estadísticas</h3>
+        <div id="statsContainer" class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <div class="stat-info">
+                    <span class="stat-number" id="totalEvents">0</span>
+                    <span class="stat-label">Total Eventos</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <span class="stat-number" id="activeEvents">0</span>
+                    <span class="stat-label">Activos</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏰</div>
+                <div class="stat-info">
+                    <span class="stat-number" id="pendingEvents">0</span>
+                    <span class="stat-label">Pendientes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script_register.js"></script>
+</body>
+</html>

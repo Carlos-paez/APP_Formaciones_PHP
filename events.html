@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Eventos - Gestor de Eventos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📋 Mis Eventos Programados</h1>
+        <p class="subtitle">Eventos activos y finalizados con opciones de gestión</p>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="index.html" class="btn-nav">🏠 Inicio</a>
+        <a href="register.html" class="btn-nav">📝 Registrar Evento</a>
+    </div>
+
+    <div class="filter-section">
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="active">Activos</button>
+            <button class="filter-btn" data-filter="finished">Finalizados</button>
+            <button class="filter-btn" data-filter="pending">Pendientes</button>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchEvents" placeholder="🔍 Buscar evento...">
+        </div>
+    </div>
+
+    <div id="messageContainer"></div>
+
+    <div id="loadingIndicator" class="loading">Cargando eventos...</div>
+
+    <div id="eventsContainer" class="events-grid">
+        <!-- Los eventos se cargarán aquí dinámicamente -->
+    </div>
+
+    <div id="emptyState" class="empty-state">
+        <div class="empty-icon">📭</div>
+        <h3>No hay eventos</h3>
+        <p>Aún no has registrado ningún evento. ¡Comienza ahora!</p>
+        <a href="register.html" class="btn-primary">➕ Registrar Primer Evento</a>
+    </div>
+</div>
+
+<!-- Modal de Alerta -->
+<div id="alertModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="alert-icon">⚠️</div>
+        <h2>🔔 ¡Alerta de Evento!</h2>
+        <p id="alertMessage">¡Atención! Un evento está por finalizar.</p>
+        <div class="modal-buttons">
+            <button class="btn-alert" onclick="closeAlert()">Entendido</button>
+        </div>
+    </div>
+</div>
+
+<audio id="alertSound" src="alert_sound.mp3" preload="auto"></audio>
+
+<script src="script_events.js"></script>
+</body>
+</html>

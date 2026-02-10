@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Eventos - Inicio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📅 Gestor de Eventos</h1>
+        <p class="subtitle">Sistema de gestión y alertas para formaciones</p>
+    </div>
+
+    <div class="menu-container">
+        <div class="menu-card">
+            <div class="menu-icon">📝</div>
+            <h2>Registrar Nuevo Evento</h2>
+            <p>Agrega una nueva formación al sistema con sus horarios</p>
+            <a href="register.html" class="btn-menu">Ir al Registro</a>
+        </div>
+
+        <div class="menu-card">
+            <div class="menu-icon">📋</div>
+            <h2>Ver Eventos</h2>
+            <p>Visualiza todos los eventos programados y activos</p>
+            <a href="events.html" class="btn-menu">Ver Eventos</a>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3>ℹ️ Información del Sistema</h3>
+        <ul>
+            <li>🔔 Alertas automáticas 10 minutos antes de finalizar</li>
+            <li>🗑️ Eliminación de eventos finalizados</li>
+            <li>💾 Almacenamiento en base de datos SQLite</li>
+            <li>📱 Diseño responsive para todos los dispositivos</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // Verificar alertas incluso desde la página principal
+    setInterval(async () => {
+        try {
+            const response = await fetch('check_alerts.php');
+            const data = await response.json();
+
+            if (data.alert) {
+                // Reproducir sonido
+                const audio = new Audio('alert_sound.mp3');
+                audio.play().catch(e => console.log('Error audio:', e));
+
+                // Mostrar notificación
+                if (Notification.permission === 'granted') {
+                    new Notification('🔔 Alerta de Evento', {
+                        body: data.message,
+                        icon: 'https://cdn-icons-png.flaticon.com/512/1576/1576383.png'
+                    });
+                }
+            }
+        } catch (error) {
+            console.error('Error verificando alertas:', error);
+        }
+    }, 60000);
+
+    // Solicitar permisos de notificación
+    if ('Notification' in window && Notification.permission !== 'granted') {
+        Notification.requestPermission();
+    }
+</script>
+</body>
+</html>

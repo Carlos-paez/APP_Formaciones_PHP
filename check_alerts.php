@@ -7,27 +7,27 @@ header('Expires: 0');
 
 try {
     require_once __DIR__ . '/database.php';
-    
+
     $db = new Database();
     $events = $db->getEvents();
-    
+
     if (!is_array($events)) {
         echo json_encode(['alerts' => []]);
         exit();
     }
-    
+
     $now = new DateTime();
     $currentHour = (int)$now->format('H');
     $currentMinute = (int)$now->format('i');
     $currentTime = $currentHour * 60 + $currentMinute;
-    
+
     $alerts = [];
-    
+
     foreach ($events as $event) {
         $hora_fin = $event['hora_fin'];
         list($endHour, $endMinute) = explode(':', $hora_fin);
         $endTime = $endHour * 60 + $endMinute;
-        
+
         // Verificar si el evento acaba de finalizar (en el último minuto)
         if ($currentTime >= $endTime && $currentTime <= $endTime + 1) {
             $alerts[] = [
@@ -37,14 +37,14 @@ try {
             ];
             continue; // Solo una alerta por evento
         }
-        
+
         // Verificar alertas de advertencia (10 y 5 minutos antes)
         $warningPoints = [10, 5];
         foreach ($warningPoints as $minutesBefore) {
             $warningTime = $endTime - $minutesBefore;
             // Ajustar si el tiempo es negativo (cruza medianoche)
             if ($warningTime < 0) $warningTime += 24 * 60;
-            
+
             // Verificar con margen de 1 minuto
             if ($currentTime >= $warningTime && $currentTime <= $warningTime + 1) {
                 $alerts[] = [
@@ -57,9 +57,9 @@ try {
             }
         }
     }
-    
+
     echo json_encode(['alerts' => $alerts, 'current_time' => "$currentHour:$currentMinute"]);
-    
+
 } catch (Exception $e) {
     error_log("check_alerts.php Error: " . $e->getMessage());
     http_response_code(500);
